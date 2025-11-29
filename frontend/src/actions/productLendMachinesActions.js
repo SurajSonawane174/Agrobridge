@@ -22,7 +22,7 @@ export const listLendMachineProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_MACHINE_LIST_REQUEST })
 
-        const { data } = await axios.get('/api/lendMachines')
+        const { data } = await axios.get('https://agrobridge-backend-bdpr.onrender.com/api/lendMachines')
 
         dispatch({
             type: PRODUCT_MACHINE_LIST_SUCCESS,
@@ -43,7 +43,7 @@ export const listLendMachineProductsDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_MACHINE_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/lendMachines/${id}`)
+        const { data } = await axios.get(`https://agrobridge-backend-bdpr.onrender.com/api/lendMachines/${id}`)
 
         dispatch({
             type: PRODUCT_MACHINE_DETAILS_SUCCESS,
@@ -72,7 +72,7 @@ export const deleteLendMachineProduct = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`/api/lendMachines/${id}`, config)
+        await axios.delete(`https://agrobridge-backend-bdpr.onrender.com/api/lendMachines/${id}`, config)
 
         dispatch({
             type: MACHINE_DELETE_SUCCESS,
@@ -108,7 +108,7 @@ export const createLendMachine = (machineData) => async (dispatch, getState) => 
 
         console.log('Config:', config)
 
-        const { data } = await axios.post(`/api/lendMachines`, machineData, config)
+        const { data } = await axios.post(`https://agrobridge-backend-bdpr.onrender.com/api/lendMachines`, machineData, config)
 
         dispatch({
             type: MACHINE_CREATE_SUCCESS,
@@ -143,7 +143,7 @@ export const updateLendMachine = (machine) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`/api/lendMachines/${machine._id}`, machine, config)
+        const { data } = await axios.put(`https://agrobridge-backend-bdpr.onrender.com/api/lendMachines/${machine._id}`, machine, config)
 
         dispatch({
             type: MACHINE_UPDATE_SUCCESS,

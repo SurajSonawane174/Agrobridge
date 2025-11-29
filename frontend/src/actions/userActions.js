@@ -40,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            '/api/users/login',
+            'https://agrobridge-backend-bdpr.onrender.com/api/users/login',
             { email, password },
             config
         )
@@ -75,7 +75,7 @@ export const register = (name, email, password, cropSelection) => async (dispatc
         }
 
         const { data } = await axios.post(
-            '/api/users/',
+            'https://agrobridge-backend-bdpr.onrender.com/api/users/',
             { name, email, password, cropSelection },
             config
         )
@@ -118,7 +118,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `/api/users/${id}`,
+            `https://agrobridge-backend-bdpr.onrender.com/api/users/${id}`,
             config
         )
 
@@ -154,7 +154,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `/api/users/profile`,
+            `https://agrobridge-backend-bdpr.onrender.com/api/users/profile`,
             user,
             config
         )
@@ -189,7 +189,7 @@ export const listUsers = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`/api/users`, config)
+        const { data } = await axios.get(`https://agrobridge-backend-bdpr.onrender.com/api/users`, config)
 
         dispatch({
             type: USER_LIST_SUCCESS,
@@ -222,7 +222,7 @@ export const deleteUsers = (id) => async (dispatch, getState) => {
         }
 
         // eslint-disable-next-line no-unused-vars
-        const { data } = await axios.delete(`/api/users/${id}`, config)
+        const { data } = await axios.delete(`https://agrobridge-backend-bdpr.onrender.com/api/users/${id}`, config)
 
         dispatch({
             type: USER_DELETE_SUCCESS,
@@ -254,7 +254,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+        const { data } = await axios.put(`https://agrobridge-backend-bdpr.onrender.com/api/users/${user._id}`, user, config)
 
         dispatch({ type: USER_UPDATE_SUCCESS })
 

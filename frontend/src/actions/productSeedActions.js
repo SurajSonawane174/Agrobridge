@@ -26,7 +26,7 @@ export const listSeedProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_SEED_LIST_REQUEST })
 
-        const { data } = await axios.get('/api/seeds')
+        const { data } = await axios.get('https://agrobridge-backend-bdpr.onrender.com/api/seeds')
 
         dispatch({
             type: PRODUCT_SEED_LIST_SUCCESS,
@@ -47,7 +47,7 @@ export const listSeedProductsDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_SEED_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/seeds/${id}`)
+        const { data } = await axios.get(`https://agrobridge-backend-bdpr.onrender.com/api/seeds/${id}`)
 
         dispatch({
             type: PRODUCT_SEED_DETAILS_SUCCESS,
@@ -76,7 +76,7 @@ export const deleteSeedProducts = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`/api/seeds/${id}`, config)
+        await axios.delete(`https://agrobridge-backend-bdpr.onrender.com/api/seeds/${id}`, config)
 
         dispatch({
             type: SEED_DELETE_SUCCESS,
@@ -105,7 +105,7 @@ export const createSeedProducts = (seedData) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.post(`/api/seeds`, seedData, config)
+        const { data } = await axios.post(`https://agrobridge-backend-bdpr.onrender.com/api/seeds`, seedData, config)
 
         dispatch({
             type: SEED_CREATE_SUCCESS,
@@ -135,7 +135,7 @@ export const updateSeedProducts = (seed) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`/api/seeds/${seed._id}`, seed, config)
+        const { data } = await axios.put(`https://agrobridge-backend-bdpr.onrender.com/api/seeds/${seed._id}`, seed, config)
 
         dispatch({
             type: SEED_UPDATE_SUCCESS,
@@ -175,7 +175,7 @@ export const createProductReview = (productId, review) => async (
         },
       }
   
-      await axios.post(`/api/seeds/${productId}/reviews`, review, config)
+      await axios.post(`https://agrobridge-backend-bdpr.onrender.com/api/seeds/${productId}/reviews`, review, config)
   
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,

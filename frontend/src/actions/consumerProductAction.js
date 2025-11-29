@@ -22,7 +22,7 @@ export const listConsumerProducts = () => async (dispatch) => {
     try {
         dispatch({ type: CONSUMER_PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get('/api/consumer')
+        const { data } = await axios.get('https://agrobridge-backend-bdpr.onrender.com/api/consumer')
 
         dispatch({
             type: CONSUMER_PRODUCT_LIST_SUCCESS,
@@ -43,7 +43,7 @@ export const listConsumerProductsDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: CONSUMER_PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/consumer/${id}`)
+        const { data } = await axios.get(`https://agrobridge-backend-bdpr.onrender.com/api/consumer/${id}`)
 
         dispatch({
             type: CONSUMER_PRODUCT_DETAILS_SUCCESS,
@@ -72,7 +72,7 @@ export const listMyConsumerProducts = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get('/api/consumer/myproducts', config)
+        const { data } = await axios.get('https://agrobridge-backend-bdpr.onrender.com/api/consumer/myproducts', config)
 
         dispatch({
             type: CONSUMER_PRODUCT_LIST_SUCCESS,
@@ -102,7 +102,7 @@ export const deleteConsumerProduct = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`/api/consumer/${id}`, config)
+        await axios.delete(`https://agrobridge-backend-bdpr.onrender.com/api/consumer/${id}`, config)
 
         dispatch({
             type: CONSUMER_DELETE_SUCCESS,
@@ -134,7 +134,7 @@ export const createConsumer = (productData) => async (dispatch, getState) => {
 
         console.log('Sending to backend:', productData) // Debug log
 
-        const { data } = await axios.post('/api/consumer/', productData, config)
+        const { data } = await axios.post('https://agrobridge-backend-bdpr.onrender.com/api/consumer/', productData, config)
 
         dispatch({
             type: CONSUMER_CREATE_SUCCESS,
@@ -164,7 +164,7 @@ export const updateConsumer = (consumer) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`/api/consumer/${consumer._id}`, consumer, config)
+        const { data } = await axios.put(`https://agrobridge-backend-bdpr.onrender.com/api/consumer/${consumer._id}`, consumer, config)
 
         dispatch({
             type: CONSUMER_UPDATE_SUCCESS,
