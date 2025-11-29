@@ -18,6 +18,7 @@ dotenv.config({ path: './backend/.env' });
 
 connectDB();
 
+const app = express();
 
 app.use(cors({
   origin: '*', // allow all origins temporarily
@@ -25,7 +26,6 @@ app.use(cors({
 }));
 
 
-const app = express();
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
