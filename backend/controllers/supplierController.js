@@ -4,9 +4,6 @@ import generateToken from './../utils/genarateToken.js'
 import Supplier from './../models/supplierModel.js';
 import nodeGeocoder from 'node-geocoder'
 
-// @desc    Create supplier product
-// @rout    POST /api/supplier/
-// @access  private
 const createSupplierProduct = asyncHandler(async (req, res) => {
   const {
     name,
@@ -59,33 +56,22 @@ const createSupplierProduct = asyncHandler(async (req, res) => {
     throw new Error('Failed to create supplier product');
   }
 });
-// @desc    Get logged in user products
-// @route   GET /api/supplier/myproducts
-// @access  Private
+
 const getMyProducts = asyncHandler(async (req, res) => {
     const products = await Supplier.find({ user: req.user._id })
     res.json(products)
 })
 
-// @desc    Get all Products
-// @route   GET /api/supplier
-// @access  Public
 const getMyProductsForPublic = asyncHandler(async (req, res) => {
     const products = await Supplier.find({}).populate('user', 'id name')
     res.json(products)
 })
 
-// @desc    Get all Products
-// @route   GET /api/supplier
-// @access  Private/Admin
 const getProducts = asyncHandler(async (req, res) => {
     const products = await Supplier.find({}).populate('user', 'id name')
     res.json(products)
 })
 
-// @desc    Fetch product by id
-// @rout    GET /supplier/:id
-// @access  public
 const getFarmerProductById = asyncHandler(async (req, res) => {
     const product = await Supplier.findById(req.params.id);
 
@@ -97,9 +83,6 @@ const getFarmerProductById = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Update Product Review
-// @rout    POST /supplier/product/:id/review
-// @access  private/ Admin
 const createFarmerProductReview = asyncHandler(async (req, res) => {
     const { rating, comment } = req.body
 
@@ -135,9 +118,7 @@ const createFarmerProductReview = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    update product reviewed
-// @rout    PUT /supplier/product/:id/review
-// @access  Private/Admin
+
 const updateProductReviewed = asyncHandler(async (req, res) => {
     const product = await Supplier.findById(req.params.id)
 
@@ -156,9 +137,6 @@ const updateProductReviewed = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    update supplier product profile
-// @rout    PUT /api/supplier/product/:id/edit
-// @access  Private
 const updateSupplierProductProfile = asyncHandler(async (req, res) => {
     const product = await Supplier.findById(req.params.id)
 

@@ -3,25 +3,16 @@ import asyncHandler from 'express-async-handler'
 
 import ConsumerProducts from './../models/consumerProductModel.js';
 
-// @desc    Fetch all products
-// @rout    GET /consumer
-// @access  public
 const getConsumerProducts = asyncHandler(async (req, res) => {
     const consumerProducts = await ConsumerProducts.find({})
     res.json(consumerProducts);
 })
 
-// @desc    Get logged in user's consumer products
-// @route   GET /api/consumer/myproducts
-// @access  private
 const getMyConsumerProducts = asyncHandler(async (req, res) => {
     const consumerProducts = await ConsumerProducts.find({ user: req.user._id })
     res.json(consumerProducts);
 })
 
-// @desc    Fetch Consumer Product by id
-// @rout    GET /consumer/:id
-// @access  public
 const getConsumerProductById = asyncHandler(async (req, res) => {
     const consumerProduct = await ConsumerProducts.findById(req.params.id);
 
@@ -33,9 +24,6 @@ const getConsumerProductById = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Delete consumer product
-// @rout    DELETE /consumer/:id
-// @access  private/admin
 const deleteConsumerProduct = asyncHandler(async (req, res) => {
     const consumerProduct = await ConsumerProducts.findById(req.params.id);
 
@@ -54,9 +42,6 @@ const deleteConsumerProduct = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Create Consumer
-// @rout    POST /consumer/
-// @access  private/ Admin
 const createConsumer = asyncHandler(async (req, res) => {
 
     console.log('=== CREATE CONSUMER DEBUG ===')
@@ -90,9 +75,6 @@ const createConsumer = asyncHandler(async (req, res) => {
     res.status(201).json(createdConsumerProduct)
 })
 
-// @desc    Update Consumer
-// @rout    PUT /consumer/:id
-// @access  private/ Admin
 const updateConsumer = asyncHandler(async (req, res) => {
     const { prod_name, price, image, seller_name, prod_size, quantity, avalaible_location } = req.body
 
@@ -116,9 +98,6 @@ const updateConsumer = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Create product review
-// @route   POST /api/products/consumer/:id/reviews
-// @access  private
 const createConsumerProductReview = asyncHandler(async (req, res) => {
     const { rating, comment } = req.body
 

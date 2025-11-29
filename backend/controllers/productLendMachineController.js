@@ -3,17 +3,12 @@ import asyncHandler from 'express-async-handler'
 
 import ProductLendMachines from './../models/productLendMachineModel.js';
 
-// @desc    Fetch all lending Machines
-// @rout    GET /lendMachines
-// @access  public
 const getLendMachnines = asyncHandler(async(req, res) => {
     const productLendMachine = await ProductLendMachines.find({})
     res.json(productLendMachine);
 })
 
-// @desc    Fetch machine by id
-// @rout    GET /lendMachines/:id
-// @access  public
+
 const getLendMachnineById = asyncHandler(async(req, res) => {
     const productLendMachine = await ProductLendMachines.findById(req.params.id);
 
@@ -25,9 +20,6 @@ const getLendMachnineById = asyncHandler(async(req, res) => {
     }
 })
 
-// @desc    Fetch machine by id
-// @rout    GET /lendMachines/:id
-// @access  private/admin
 const deleteLendMachnine = asyncHandler(async(req, res) => {
     const lendMachine = await ProductLendMachines.findById(req.params.id);
 
@@ -40,20 +32,16 @@ const deleteLendMachnine = asyncHandler(async(req, res) => {
     }
 })
 
-// @desc    Create Lend Machine
-// @rout    POST /lendMachines/
-// @access  private/ Admin
 const createLendMachine = asyncHandler(async (req, res) => {
     const { name, image, description, target_plant, price, quantity, machine_power } = req.body
 
-    // Validation: check if any required field is missing
     if (!name || !description || !target_plant || !price || !quantity || !machine_power) {
         res.status(400)
         throw new Error('Please provide all required machine details')
     }
 
     const lendMachine = new ProductLendMachines({
-        user: req.user._id,  // from token middleware
+        user: req.user._id,
         name,
         image,
         description,
@@ -67,9 +55,6 @@ const createLendMachine = asyncHandler(async (req, res) => {
     res.status(201).json(createdLendMachine)
 })
 
-// @desc    Update Lend Machine
-// @rout    PUT /lendMachines/:id
-// @access  private/ Admin
 const updateLendMachine = asyncHandler(async (req, res) => {
     const { name, price, image, description, target_plant, quantity, machine_power } = req.body
 

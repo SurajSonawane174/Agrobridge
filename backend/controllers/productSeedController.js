@@ -3,17 +3,11 @@ import asyncHandler from 'express-async-handler'
 
 import ProductSeeds from './../models/productSeedModel.js';
 
-// @desc    Fetch all products
-// @rout    GET /seeds
-// @access  public
 const getSeedProducts = asyncHandler(async (req, res) => {
     const productSeed = await ProductSeeds.find({})
     res.json(productSeed);
 })
 
-// @desc    Fetch product by id
-// @rout    GET /seeds/:id
-// @access  public
 const getSeedProductById = asyncHandler(async (req, res) => {
     const productSeed = await ProductSeeds.findById(req.params.id);
 
@@ -25,9 +19,6 @@ const getSeedProductById = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Delete Seed
-// @rout    DELETE /seeds/:id
-// @access  private/ Admin
 const deleteSeedProduct = asyncHandler(async (req, res) => {
     const productSeed = await ProductSeeds.findById(req.params.id);
 
@@ -40,9 +31,6 @@ const deleteSeedProduct = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Create Product Seed
-// @rout    POST /seeds/
-// @access  private/ Admin
 const createSeedProduct = asyncHandler(async (req, res) => {
 
     try {
@@ -71,7 +59,7 @@ const createSeedProduct = asyncHandler(async (req, res) => {
 
     }
     catch (error) {
-        console.error('❌ ERROR:', error);
+        console.error('ERROR:', error);
         console.error('Error name:', error.name);
         console.error('Error message:', error.message);
         console.error('Error stack:', error.stack);
@@ -82,9 +70,7 @@ const createSeedProduct = asyncHandler(async (req, res) => {
         });
     }
 })
-// @desc    Update Product Seed
-// @rout    PUT /seeds/:id
-// @access  private/ Admin
+
 const updateSeedProduct = asyncHandler(async (req, res) => {
     const { name, price, image, description, category, countInStock } = req.body
 
@@ -107,9 +93,6 @@ const updateSeedProduct = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Update Product Review
-// @rout    POST /seeds/:id/review
-// @access  private/ Admin
 const createSeedProductReview = asyncHandler(async (req, res) => {
     const { rating, comment } = req.body
 

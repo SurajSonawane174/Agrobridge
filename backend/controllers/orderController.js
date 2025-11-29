@@ -3,9 +3,6 @@ import asyncHandler from 'express-async-handler'
 
 import orderSeed from './../models/orderSeedModel.js';
 
-// @desc    create new order
-// @rout    POST /api/orders
-// @access  private
 const addOrderItems = asyncHandler(async (req, res) => {
     const {
         orderItems,
@@ -38,9 +35,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Get order by ID
-// @rout    GET /api/orders/:id
-// @access  private
 const getOrderById = asyncHandler(async (req, res) => {
     const order = await orderSeed.findById(req.params.id).populate('user', 'name email')
 
@@ -52,9 +46,6 @@ const getOrderById = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Update order to paid
-// @rout    PUT /api/orders/:id/pay
-// @access  private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
     const order = await orderSeed.findById(req.params.id)
 
@@ -77,9 +68,6 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Update order to delivered
-// @rout    PUT /api/orders/:id/deliver
-// @access  private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
     const order = await orderSeed.findById(req.params.id)
 
@@ -96,17 +84,11 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/myorders
-// @access  Private
 const getMyOrders = asyncHandler(async (req, res) => {
     const orders = await orderSeed.find({ user: req.user._id })
     res.json(orders)
 })
 
-// @desc    Get all orders
-// @route   GET /api/orders
-// @access  Private/Admin
 const getOrders = asyncHandler(async (req, res) => {
     const orders = await orderSeed.find({}).populate('user', 'id name')
     res.json(orders)
