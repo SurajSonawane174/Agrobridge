@@ -11,11 +11,19 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import supplierRoutes from './routes/supplierRoutes.js'
+import cors from 'cors';
 
 dotenv.config({ path: './backend/.env' });
 
 
 connectDB();
+
+
+app.use(cors({
+  origin: '*', // allow all origins temporarily
+  credentials: true
+}));
+
 
 const app = express();
 
